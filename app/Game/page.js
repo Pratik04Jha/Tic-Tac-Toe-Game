@@ -147,10 +147,18 @@ const Page = () => {
     setShowModal(false);
   };
 
-  const userMoveSound = useRef(new Audio("/Audios/note-high.mp3"));
-  const computerMoveSound = useRef(new Audio("/Audios/note-low.mp3"));
-  const gameOverSound = useRef(new Audio("/Audios/game-over.mp3"));
-  const tieSound = useRef(new Audio("/Audios/game-over-tie.mp3"));
+  const userMoveSound = useRef(null);
+const computerMoveSound = useRef(null);
+const gameOverSound = useRef(null);
+const tieSound = useRef(null);
+
+useEffect(() => {
+  // This code only runs in the browser
+  userMoveSound.current = new Audio("/Audios/note-high.mp3");
+  computerMoveSound.current = new Audio("/Audios/note-low.mp3");
+  gameOverSound.current = new Audio("/Audios/game-over.mp3");
+  tieSound.current = new Audio("/Audios/game-over-tie.mp3");
+}, []);
 
   const playUserSound = () => userMoveSound.current.play();
   const playComputerSound = () => computerMoveSound.current.play();
@@ -215,11 +223,13 @@ const Page = () => {
             >
               <h1 className="text-4xl font-bold ">{val}</h1>
               <h1 className="text-2xl font-semibold ">
-                {idx === 0
+                {
+                  idx === 0
                   ? "Player (X)"
                   : idx === 1
                   ? "Computer (O)"
-                  : "Draws (X=O)"}
+                  : "Draws (X=O)"
+                }
               </h1>
             </motion.div>
           ))}
