@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { IoMdPlay, IoMdStats } from "react-icons/io";
 import { MdLeaderboard } from "react-icons/md";
 import Link from "next/link";
@@ -9,6 +9,8 @@ import { motion } from "framer-motion";
 import PlayerTypeButton from "../UserInterface/PlayerTypeButton";
 
 const MenuPage = () => {
+  const [difficulty, setDifficulty] = useState(1); // lifted state here
+
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 text-white">
       <motion.div
@@ -21,15 +23,28 @@ const MenuPage = () => {
           Tic Tac Toe <br /> Game
         </h1>
         <div className="flex flex-col gap-4 items-center ">
-          <DifficultyButton />
+          <DifficultyButton
+            difficulty={difficulty}
+            setDifficulty={setDifficulty}
+          />
+
           <div className="flex gap-4 flex-col">
             <ChoiceButton />
             <PlayerTypeButton />
           </div>
         </div>
         <div className="flex flex-col gap-2">
+          <motion.div
+            whileHover={{ scale: 1.08 }}
+            transition={{ type: "spring", stiffness: 600, damping: 10 }}
+          >
+            <Link href={`/Game/GameDifficulty${difficulty}`}>
+              <button className="bg-zinc-800 rounded-lg py-3 w-90 px-4 text-white text-xl font-semibold flex gap-2 items-center cursor-pointer">
+                <IoMdPlay /> Play
+              </button>
+            </Link>
+          </motion.div>
           {[
-            { src: "/Game", icon: <IoMdPlay />, title: "Play" },
             {
               src: "/LeaderBoard",
               icon: <MdLeaderboard />,
