@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import DifficultyButton from "../UserInterface/DifficultyButton";
-import ChoiceButton from "../UserInterface/ChoiceButton";
 import { motion } from "framer-motion";
 import { CirclePlay, ShieldHalf, ChartNoAxesColumn } from "lucide-react";
 
