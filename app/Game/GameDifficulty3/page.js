@@ -10,6 +10,8 @@ import {
   FaBars,
   FaVolumeUp,
 } from "react-icons/fa";
+import Footer from "@/app/components/Sections/Footer";
+import Navbar from "@/app/components/Sections/Navbar";
 
 const Page = () => {
   const initialBoard = Array(9).fill(null);
@@ -147,6 +149,7 @@ const Page = () => {
     setShowModal(false);
   };
 
+
   const userMoveSound = useRef(null);
 const computerMoveSound = useRef(null);
 const gameOverSound = useRef(null);
@@ -208,33 +211,10 @@ useEffect(() => {
   };
 
   return (
-    <div className="relative flex items-center justify-between h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800">
-      {/* Stats Panel */}
-      <div className="w-[20%] justify-center flex ">
-        <div className="w-[80%] justify-center flex flex-col gap-2 ">
-          {[playerScore, computerScore, draws].map((val, idx) => (
-            <motion.div
-              key={idx}
-              className="flex flex-col items-center justify-center bg-zinc-800/20 border-4 border-white/10 rounded-lg px-4 py-8 cursor-pointer"
-              whileHover={{ scale: 1.1 }}
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ type: "spring", stiffness: 600, damping: 10 }}
-            >
-              <h1 className="text-4xl font-bold ">{val}</h1>
-              <h1 className="text-2xl font-semibold ">
-                {
-                  idx === 0
-                  ? "Player (X)"
-                  : idx === 1
-                  ? "Computer (O)"
-                  : "Draws (X=O)"
-                }
-              </h1>
-            </motion.div>
-          ))}
-        </div>
-      </div>
+    <>
+      <Navbar />
+    <div className="relative flex items-center flex-col justify-center h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 gap-6">
+      
 
       {/* Game Board */}
       <motion.div
@@ -254,26 +234,28 @@ useEffect(() => {
         ))}
       </motion.div>
 
-      {/* Control Panel */}
-      <div className="w-[20%] justify-center items-start flex ">
-        <div className="w-[80%] grid grid-cols-2 grid-rows-3 gap-2 ">
-          {[
-            { icon: <FaUndo size={30} />, onClick: () => {} },
-            { icon: <FaVolumeUp size={40} />, onClick: () => {} },
-            { icon: <FaBars size={30} />, onClick: () => {} },
-            { icon: <FaSyncAlt size={30} />, onClick: resetGame },
-            { icon: <FaLessThan size={30} />, onClick: () => {} },
-            { icon: <FaGreaterThan size={30} />, onClick: () => {} },
-          ].map((item, index) => (
+      {/* Stats Panel */}
+      <div className="w-[20%] justify-center flex ">
+        <div className="w-[80%] justify-center flex  gap-20 ">
+          {[playerScore, computerScore, draws].map((val, idx) => (
             <motion.div
-              key={index}
+              key={idx}
+              className="flex flex-col items-center justify-center  rounded-lg  cursor-pointer"
+              whileHover={{ scale: 1.1 }}
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
-              className="flex flex-col items-center justify-center bg-zinc-800/20 border-4 border-white/10 rounded-lg px-2 py-4 cursor-pointer"
-              whileHover={{ scale: 1.1 }}
               transition={{ type: "spring", stiffness: 600, damping: 10 }}
             >
-              {item.icon}
+              <h1 className="text-4xl font-bold ">{val}</h1>
+              <h1 className="text-2xl font-semibold ">
+                {
+                  idx === 0
+                  ? "Player"
+                  : idx === 1
+                  ? "Computer"
+                  : "Draws"
+                }
+              </h1>
             </motion.div>
           ))}
         </div>
@@ -306,6 +288,7 @@ useEffect(() => {
         )}
       </AnimatePresence>
     </div>
+    </>
   );
 };
 

@@ -1,5 +1,5 @@
 import Footer from "./components/Sections/Footer";
-import Navbar from "./components/Sections/Navbar";
+// import Navbar from "./components/Sections/Navbar";
 import "./globals.css";
 
 
@@ -12,7 +12,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="bg-black text-white overflow-hidden" suppressHydrationWarning>
-        <Navbar />
+        {/* <Navbar /> */}
         {children}
         <Footer />
       </body>

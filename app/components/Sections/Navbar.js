@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from "react";
-import { FaGithub, FaCodepen, FaDiscord } from "react-icons/fa";
 import Link from "next/link";
+import { RotateCcw, Volume2 , House  } from 'lucide-react';
 
 const IconWithTooltip = ({ icon: Icon, tooltip }) => {
   const [hovered, setHovered] = useState(false);
@@ -33,16 +33,14 @@ const Navbar = () => {
     <nav className="fixed w-full h-15 top-0 left-0 flex justify-between items-center px-4  text-white z-50">
       <Link href="/">
         <h1 className="font-semibold text-xl">
-          <span className="font-extrabold text-2xl">#</span>Game1
+          <span className="font-extrabold text-2xl"></span>MindGrind
         </h1>
       </Link>
-      <div className="flex items-center gap-6">
-        <IconWithTooltip icon={FaGithub} tooltip="GitHub" />
-        <IconWithTooltip icon={FaCodepen} tooltip="CodePen" />
-        <IconWithTooltip icon={FaDiscord} tooltip="Discord" />
-        <button className="bg-white text-black py-1 px-4 font-semibold rounded-lg cursor-pointer">
-          Profile
-        </button>
+      <div className="flex items-center gap-4">
+        <IconWithTooltip icon={House} tooltip="Home" />
+        <IconWithTooltip icon={Volume2} tooltip="Volume" />
+        <IconWithTooltip icon={RotateCcw} tooltip="Restart" />
+        
       </div>
     </nav>
   );

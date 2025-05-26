@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-
+import {Smile, Meh, Angry } from "lucide-react";
 const DifficultyButton = ({ difficulty, setDifficulty }) => {
   const [selected, setSelected] = useState(null);
 
@@ -13,9 +13,9 @@ const DifficultyButton = ({ difficulty, setDifficulty }) => {
   return (
     <div className="flex gap-4">
       {[
-        { title: "Easy", difficutly: 1 },
-        { title: "Medium", difficutly: 2 },
-        { title: "Hard", difficutly: 3 },
+        { title: <Smile />, difficutly: 1 },
+        { title: <Meh />, difficutly: 2 },
+        { title: <Angry />, difficutly: 3 },
       ].map((items, index) => (
         <motion.div
           key={index}
@@ -24,9 +24,7 @@ const DifficultyButton = ({ difficulty, setDifficulty }) => {
         >
           <button
             onClick={() => handleButtonClick(items.title, items.difficutly)}
-            className={`bg-zinc-800 rounded-lg py-1 w-20 cursor-pointer border-2 border-transparent transform ${
-              selected === items.title ? "border-2 border-zinc-500" : ""
-            } hover:border-2 focus:outline-none`}
+            className="rounded-full py-1  cursor-pointer border-2 border-transparent transform"
           >
             {items.title}
           </button>
